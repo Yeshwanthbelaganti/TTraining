@@ -1,0 +1,19 @@
+Write a program that takes a string containing both digits and alphabet as input and find the sum of all digits in the string.
+----------------------------------------------------------------------------------------------------------
+#include <stdio.h>
+int main()
+{
+    char string[500];
+    int count, nc = 0, sum = 0;
+    scanf("%s", string);
+    for (count = 0; string[count] != '\0'; count++)
+    {
+        if ((string[count] >= '0') && (string[count] <= '9'))
+        {
+            nc += 1;
+            sum += (string[count] - '0');
+        }
+    }
+    printf("Sum : %d\n", sum);
+}
+
