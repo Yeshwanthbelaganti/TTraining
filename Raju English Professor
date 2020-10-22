@@ -1,0 +1,76 @@
+Raju is a professor and he delivers a problem statement to his students, there are two strings A and B, find the length of the shortest subsequence in A which is not a subsequence in B.
+If no such subsequence is possible, return -1. A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.
+A string of length n has 2^n different possible subsequences.
+For Ex:
+Input : A = “babab” B = “babba”
+Output : 3
+The subsequence “aab” of length 3 is present in A but not in B.
+-------------------------------------------------------------------------------------------------------
+import java.util.Scanner;
+class GFG 
+{ 
+
+	static final int MAX = 1005; 
+	static int shortestSeq(char[] S, char[] T) 
+	{ 
+		int m = S.length, n = T.length; 
+		int dp[][] = new int[m + 1][n + 1]; 
+
+		for (int i = 0; i <= m; i++) 
+		{ 
+			dp[i][0] = 1; 
+		} 
+
+		for (int i = 0; i <= n; i++) 
+		{ 
+			dp[0][i] = MAX; 
+		} 
+
+		for (int i = 1; i <= m; i++) 
+		{ 
+			for (int j = 1; j <= n; j++) 
+			{ 
+				char ch = S[i - 1]; 
+				int k; 
+				for (k = j - 1; k >= 0; k--) 
+				{ 
+					if (T[k] == ch) 
+					{ 
+						break; 
+					} 
+				} 
+
+				if (k == -1) 
+				{ 
+					dp[i][j] = 1; 
+				} 
+				else
+				{ 
+					dp[i][j] = Math.min(dp[i - 1][j], 
+									dp[i - 1][k] + 1); 
+				} 
+			} 
+		} 
+
+		int ans = dp[m][n]; 
+		if (ans >= MAX) 
+		{ 
+			ans = -1; 
+		} 
+		return ans; 
+	} 
+
+	// main function 
+	public static void main(String[] args) 
+	{ 
+	    Scanner in=new Scanner(System.in);
+	    String A;
+	    String B;
+	    A=in.next();
+	    B=in.next();
+		char S[] = A.toCharArray(); 
+		char T[] = B.toCharArray(); 
+		int m = S.length, n = T.length; 
+		System.out.println(shortestSeq(S, T)); 
+	} 
+} 
