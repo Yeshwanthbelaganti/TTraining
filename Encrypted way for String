@@ -1,0 +1,31 @@
+Sethu wants to store his password in an encrypted way.
+
+Write a program to obtain a string and replace every A by B, a by @, 1 by 2 and special characters if any occurrence in the password they are stored as such.
+--------------------------------------------------------------------------
+#include<stdio.h>
+int main()
+{
+    char s[100];
+    scanf("%s", &s);
+     int i=0;
+     while(s[i]!='\0')
+     {
+           if(s[i]=='A')
+           {
+               s[i]='B';
+           }  
+           if(s[i]=='a')
+           {
+               s[i]='@';
+           }
+           if(s[i]=='1')
+           {
+               s[i]='2';
+           }
+           i++; 
+     }
+         
+         printf("%s",s);
+ return 0; 
+    
+}
