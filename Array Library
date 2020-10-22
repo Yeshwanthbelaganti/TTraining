@@ -1,0 +1,52 @@
+Consider an array of book names in the library. Search of a keyword must display all books that has the keyword in it.
+Input format
+n+2 number of inputs are provided,
+First input consists of ' n ' (integer) representing the number of elements in the array,
+Followed by n number of string inputs,
+Followed by the search element.
+------------------------------------------------------------------------------------------------------------------
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    char str[n][50], search[20];
+    int count1 = 0, count2 = 0, i, j, flag,k;
+    for(i=0;i<n;i++)
+    {
+        scanf(" %[^\n]s",str[i]);
+    }
+    scanf(" %[^\n]s",search);
+    count2 = strlen(search);
+    for (k=0;k<n;k++)
+    {
+        count1=strlen(str[k]);
+        for (i = 0; i <= count1 - count2; i++)
+        {
+            if(str[k][i]==search[0])
+            {
+               
+                for (j = i; j < i + count2; j++)
+                {
+                    flag = 1;
+                    if (str[k][j] != search[j - i])
+                    {
+                        flag = 0;
+                        break;
+                    }
+                }
+            }
+            if(flag==1)
+            {
+                break;
+            }
+        }
+        if (flag == 1)
+        {
+            printf("%s\n",str[k]);
+        }
+        flag = 0;
+    }
+    return 0;
+}
