@@ -1,0 +1,66 @@
+You come across the code on a medical tablet strip and you came to know that piece of information on it represents the expiration date,
+i.e “EXP260310” means 10 march 2026 is the expiry date.
+----------------------------------------------------------------------------------------------------------------
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int
+main ()
+{
+  char str[10], dest[10], mon[2], year[2], dest1[10];
+  int d = 0, y, m;
+  scanf ("%s", str);
+
+  strncpy (dest, &str[3], 2);
+  y = atoi (dest);
+
+
+  strncpy (dest, &str[5], 2);
+  m = atoi (dest);
+
+  strncpy (dest, &str[7], 2);
+  d = atoi (dest);
+
+  printf ("Day: %d\n", d);
+  switch (m)
+    {
+    case 1:
+      printf ("Month: January\n");
+      break;
+    case 2:
+      printf ("Month: February\n");
+      break;
+    case 3:
+      printf ("Month: March\n");
+      break;
+    case 4:
+      printf ("Month: April\n");
+      break;
+    case 5:
+      printf ("Month: May\n");
+      break;
+    case 6:
+      printf ("Month: June\n");
+      break;
+    case 7:
+      printf ("Month: July\n");
+      break;
+    case 8:
+        printf("Month: August\n");
+        break;
+    case 9:
+        printf("Month: September\n");
+        break;
+    case 10:
+        printf("Month: October\n");
+        break;
+    case 11:
+        printf("Month: November\n");
+        break;
+    case 12:
+        printf("Month: December\n");
+        break;
+    }
+    printf("Year: 20%d\n",y);
+  return 0;
+}
