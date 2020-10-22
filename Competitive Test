@@ -1,0 +1,27 @@
+"Axcent Academy" has arranged for a competitive test for medical students from rural villages. 
+Those successful students of the test will be awarded the scholarship for their NEET preparations at Axcent Academy. 
+Benny, the co-coordinator and founder of the academy has given one problem for the first stage of the test. The problem goes like this:
+Given an array A1, A2, ..., AN, count the number of subarrays of array A which are non-decreasing.
+A subarrayA[i, j], where 1 ≤ i ≤ j ≤ N is a sequence of integers Ai, Ai+1, ..., Aj.
+A subarrayA[i, j] is non-decreasing if Ai ≤ Ai+1 ≤ Ai+2 ≤ ... ≤ Aj. Count the total number of such subarrays.
+Benny himself has not computed the solution of the problem. Write a program to help him find the answer for the same to evaluate the students.
+------------------------------------------------------------------------------------------------------------------
+#include<stdio.h>
+int main()
+{
+    int n,i,j=0,k=0;
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(i=0;i<n-1;i++)
+    {
+        if(a[i]<=a[i+1]){j++;}
+        else{k=k+(j*(j+1)/2);j=0;}
+    }
+    k=k+(j*(j+1)/2);
+    printf("%d",k+n);
+    return 0;
+}
