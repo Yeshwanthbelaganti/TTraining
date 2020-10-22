@@ -1,0 +1,38 @@
+Write a program to find Levenshtein Distance between string X and Y.
+Note:
+The Levenshtein distance is a string metric for measuring the difference between two sequences. 
+Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions, or substitutions) required to change one word into the other.
+-----------------------------------------------------------------------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+int dist(string X, int m, string Y, int n)
+{
+    if (m == 0)
+        return n;
+
+    if (n == 0)
+        return m;
+
+    int cost;
+if (X[m - 1] == Y[n - 1])
+        cost = 0;
+    else
+        cost = 1;
+    
+    return min (min(dist(X, m - 1, Y, n) + 1,  
+            dist(X, m, Y, n - 1) + 1),         
+            dist(X, m - 1, Y, n - 1) + cost); 
+    
+}
+
+int main()
+{
+    string X , Y ;
+    cin >> X;
+    cin >> Y;
+
+    cout << "" << 
+            dist(X, X.length(), Y, Y.length());
+
+    return 0;
+}
