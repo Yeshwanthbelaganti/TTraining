@@ -1,0 +1,41 @@
+Given an array A of n elements. Find three elements m, n and k in the array such that m2 + n2 = k2  ?
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int i,j,n,temp;
+    scanf("%d",&n);
+    int arr[n],sq[n];
+    for(i=0;i<n;i++) {
+        scanf("%d",&arr[i]);
+    }
+    for(i=0;i<n;i++) {
+        sq[i] = arr[i]*arr[i];
+    }
+    for(i=0;i<n;i++) {
+        for(j=i+1;j<n;j++) {
+        if(sq[i]>sq[j]) {
+           temp = sq[i];
+           sq[i] = sq[j];
+           sq[j] = temp;
+        }
+    }
+    }
+     for (int i = n - 1; i >= 0; i--) { 
+        int j = 0; 
+        int k = i - 1; 
+        while (j < k) { 
+            if (sq[i] == sq[j] + sq[k]) { 
+                printf("%d %d %d\n",sq[i],sq[j],sq[k]);
+                printf("%.0f %.0f %.0f",sqrt(sq[i]),sqrt(sq[j]),sqrt(sq[k]));
+                return 1;
+            } 
+             else if (sq[i] > sq[j] + sq[k]) 
+                j += 1; 
+            else
+                k -= 1; 
+        } 
+    } 
+    printf("No such triplet exists");
+}
