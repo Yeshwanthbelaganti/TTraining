@@ -1,0 +1,25 @@
+Nella is an eight-year-old princess who will inherit the kingdom of Castlehaven.
+It is her birthday today and her Dad, the King of Castlehaven has arranged for a grand party.Nella loves colorful balloons and so her Dad planned to decorate the entire palace with balloons of the colors that Nella loved. 
+So he asked her about her color preferences. The sophisticated princess that Nella is, she likes only two colors — amber and brass. Her Dad boughtn balloons, each of which was either amber or brass in color.
+You are provided this information in a string s consisting of characters 'a' and 'b' only, where 'a' denotes that the balloon is amber, where 'b' denotes it being brass colored. 
+When Nella saw the balloons, she was furious with anger as 
+she wanted all the balloons of the same color. In her rage, she painted some of the balloons with the opposite color (i.e., she painted some amber ones brass and vice versa) to make all balloons appear to be the same color.
+It took her a lot of time to do this, but you can probably show her the right way of doing so, thereby teaching her a lesson to remain calm in difficult situations,
+by finding out the minimum number of balloons needed to be painted in order to make all of them the same color.
+---------------------------------------------------------------------------------------------------------------
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,a=0,b=0,len;
+    char str[30];
+    scanf("%s",str);
+    len=strlen(str);
+    for(i=0;i<len;i++)
+    {
+        if(str[i]==97){a++;}
+        else{b++;}
+    }
+    (a>b)?printf("%d",b):printf("%d",a);
+    return 0;
+}
