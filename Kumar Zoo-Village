@@ -1,0 +1,84 @@
+Kumar went to his grandmother's home and they have planned to go to a Zoo in their village. There are N people in the village, who want to visit Zoo.
+The road to reach the Zoo is not so safe. So, they go to the zoo only in a protected vehicle which can accommodate atmost 2 people.
+(There is only one such vehicle available in the village).People started to hire this vehicle to reach safely by driving it by themselves.
+Every part of the journey from the village to the zoo or from the zoo to the village has some cost associated with it which is given by an array A[] elements. 
+Array A[] has n elements, where A(i) represents the cost ith person has to pay if they travel alone in the vehicle.
+If two people travel in the vehicle, the cost of travel will be the maximum of the cost of two people.
+Help Kumar to calculate the minimum total cost so that all N people can reach Zoo safely.
+--------------------------------------------------------------------------------------------------------------------------------
+#include <stdio.h>
+int min(int a,int b)
+{
+    if(a<b)
+        return a;
+    else
+        return b;
+}
+
+int max(int a,int b)
+{
+    if(a>b)
+        return a;
+    else
+        return b;
+}
+
+
+void swap(int A[],int i,int j)
+{
+    int temp=A[i];
+    A[i]=A[j];
+    A[j]=temp;
+}
+
+void quick_sort(int A[],int left,int right)
+{
+    int mid=(left+right)/2;
+    int i=left,j=right,val=A[mid];
+    do
+    {
+        while (A[i] < val)
+            i++;
+        while (A[j] > val)
+            j--;
+        if (i <= j)
+        {
+            swap(A, i, j);
+            i++;
+            j--;
+        }
+    } while (i <= j);
+
+    if (i < right)
+        quick_sort(A, i, right);
+    if (left < j)
+        quick_sort(A, left, j);
+}
+
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    int cost[n];
+    for (int i = 0; i < n; i++)
+        scanf("%d", &cost[i]);
+    quick_sort(cost, 0, n - 1);
+
+        long total = 0, i = n - 1;
+        while (i > 2)
+        {
+
+            int cost1 = cost[i] + cost[0] + cost[i - 1] + cost[0];
+            int cost2 = cost[1] + cost[0] + cost[i] + cost[1];
+            total += min(cost1, cost2);
+            i -= 2;
+        }
+        if (i == 2)
+            total += (cost[0] + cost[1] + cost[2]);
+        else if (i == 1)
+            total += max(cost[0], cost[1]);
+        else
+            total += cost[0];
+        printf("%ld\n", total);
+return 0;
+}
