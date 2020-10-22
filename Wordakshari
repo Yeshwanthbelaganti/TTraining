@@ -1,0 +1,42 @@
+Antakshari is a popular parlor game played in India. Many word games are similar to antakshari. One such game is wordakshari. The game can be played by two or more people. 
+The first player has to recite a word. The last letter of the word is then used by the next player recite another word, starting with that word. 
+The winner or winning team is decided by a process of elimination. The person or team that cannot come up with a word with the right consonant is eliminated.
+The following rules need to be followed while playing this game.
+(i) The first word can begin with any letter.
+ (ii) All other words have to begin with the last letter of the previous word
+ (iii) No words can be repeated.
+Given a set of words write a program to print the wordakshari chain. 
+--------------------------------------------------------------------------------
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,j,len,siz;
+    char str[20][30],str1[30];
+    for(i=0;i<20;i++)
+    {
+        scanf("%s",str[i]);
+        if(strcmp(str[i],"####")==0){break;}
+    }
+    siz=i;
+    for(i=0;i<siz;i++)
+    {
+        strcpy(str1,str[i]);
+        for(j=i+1;j<siz;j++)
+        {
+            if(strcmp(str1,str[j])==0){i=-1;siz=j;break;}
+        }
+        if(i==-1){break;}
+    }
+    printf("%s\n",str[0]);
+    for(i=1;i<siz;i++)
+    {
+        len=strlen(str[i-1]);
+        if(str[i-1][len-1]==str[i][0])
+        {
+            printf("%s\n",str[i]);
+        }
+        else{break;}
+    }
+    return 0;
+}
