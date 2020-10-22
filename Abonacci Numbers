@@ -1,0 +1,37 @@
+Abinesh has two Integers A and B, and he was to print all the terms of the series upto B-terms of the A-bonacci Numbers.
+For example, when A = 2, the sequence becomes Fibonacci, when A = 3, sequence becomes Tribonacci.
+Input : A = 3, B = 8
+Output : 0, 0, 1, 1, 2, 4, 7, 13
+We need to print first B terms.
+First three terms are 0, 0 and 1.
+Fourth term is 0 + 0 + 1 = 1
+Fifth term is 0 + 1 + 1 = 2
+Sixth terms is 1 + 1 + 2 = 4
+Seventh term is 7 (1 + 2 + 4) and eighth
+term is 13 (7 + 4 + 2).
+Note:
+If A=3, the series start with 0,0,1
+If A=5, the series start with 0,0,0,0,1
+If A=6, the series start with 0,0,0,0,0,1
+=======================================================================================
+#include <bits/stdc++.h> 
+using namespace std; 
+void bonacciseries(long n, int m) 
+{ 
+	int a[m] = { 0 }; 
+	a[n - 1] = 1; 
+	a[n] = 1; 
+	for (int i = n + 1; i < m; i++) 
+		a[i] = 2 * a[i - 1] - a[i - n - 1]; 
+    
+	for (int i = 0; i < m; i++) 
+		cout << a[i] << " "; 
+} 
+int main() 
+{ 
+	int A,B;
+	cin>>A;
+	cin>>B;
+	bonacciseries(A,B); 
+	return 0; 
+} 
