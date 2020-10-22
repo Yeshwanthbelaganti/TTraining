@@ -1,0 +1,52 @@
+Sathya and Vijay are cousins, they are playing a game. At the beginning there are n coins. Given two more numbers x and y. In each move a player can pick x or y or 1 coins. 
+Sathya always starts the game. The player who picks the last coin wins the game. 
+For a given value of n, find whether Sathya will win the game or not if both are playing optimally.
+For Ex:
+Input : n = 5, x = 3, y = 4
+Output : Sathya
+There are 5 coins, every player can pick 1 or 3 or 4 coins on his/her turn.Sathya can win by picking 3 coins in first chance.
+Now 2 coins will be left so Vijay will pick one coin and now Sathya can win by picking the last coin.
+-------------------------------------------------------------------------------------------------------
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// function for finding the winner
+bool findWinner(int x, int y, int n) 
+{ 
+	int dp[n + 1]; 
+
+	// Initializing values
+	dp[0] = false; 
+	dp[1] = true; 
+
+	for (int i = 2; i <= n; i++) { 
+
+		if (i - 1 >= 0 and !dp[i - 1]) 
+			dp[i] = true; 
+		else if (i - x >= 0 and !dp[i - x]) 
+			dp[i] = true; 
+		else if (i - y >= 0 and !dp[i - y]) 
+			dp[i] = true; 
+
+		else
+			dp[i] = false; 
+	} 
+
+	return dp[n]; 
+} 
+
+// main function
+int main() 
+{ 
+	int n,x,y;
+	cin>>n;
+	cin>>x;
+	cin>>y;
+	
+	if (findWinner(x, y, n)) 
+		cout << "Sathya"; 
+	else
+		cout << "Vijay"; 
+
+	return 0; 
+} 
