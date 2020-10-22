@@ -1,0 +1,107 @@
+Miruthiga has to compute the shortest string for a combination of two given strings such that the new string consist of both the strings as its subsequences.
+For Ex:
+Input :
+a = "pear"
+b = "peach"
+Output : pearch
+pearch is the shorted string such that both pear and peach are its subsequences
+----------------------------------------------------------------------------------------------------------------------
+import java.util.Scanner;
+import java.util.ArrayList; 
+class GFG_2 { 
+		
+	// Vector that store the index of string a and b 
+	static ArrayList<Integer> index_a = new ArrayList<>(); 
+	static ArrayList<Integer> index_b = new ArrayList<>(); 
+	
+	static void index(int dp[][], String a, String b, 
+			int size_a, int size_b) 
+	{ 
+		// clearing the index vectors 
+		index_a.clear(); 
+		index_b.clear(); 
+	
+		// Return if either of a or b is reduced to 0 
+		if (size_a == 0 || size_b == 0) 
+			return; 
+	
+		// Push both to index_a and index_b with the respective a and b index 
+		if (a.charAt(size_a - 1) == b.charAt(size_b - 1)) { 
+			index(dp, a, b, size_a - 1, size_b - 1); 
+			index_a.add(size_a - 1); 
+			index_b.add(size_b - 1); 
+		} else { 
+			if (dp[size_a - 1][size_b] > dp[size_a] 
+										[size_b - 1]) { 
+				index(dp, a, b, size_a - 1, size_b); 
+			} else { 
+				index(dp, a, b, size_a, size_b - 1); 
+			} 
+		} 
+	} 
+	
+	// function to combine the strings to form the shortest string 
+	static void combine(String a, String b, int size_a, 
+				int size_b) 
+	{ 
+	
+		int[][] dp = new int[100][100]; 
+		String ans = ""; 
+		int k = 0; 
+	
+		for (int i = 1; i <= size_a; i++) { 
+			for (int j = 1; j <= size_b; j++) { 
+				if (a.charAt(i - 1) == b.charAt(j - 1)) { 
+					dp[i][j] = dp[i - 1][j - 1] + 1; 
+				} else { 
+					dp[i][j] = Math.max(dp[i][j - 1], 
+								dp[i - 1][j]); 
+				} 
+			} 
+		} 
+	
+		// Get the Lowest Common Subsequence 
+		int lcs = dp[size_a][size_b]; 
+		index(dp, a, b, size_a, size_b); 
+	
+		int i, j = i = k; 
+	
+		while (k < lcs) { 
+			while (i < size_a && i < index_a.get(k)) { 
+				ans += a.charAt(i++); 
+			} 
+	
+			while (j < size_b && j < index_b.get(k)) { 
+				ans += b.charAt(j++); 
+			} 
+	
+			ans = ans + a.charAt(index_a.get(k)); 
+			k++; 
+			i++; 
+			j++; 
+		} 
+	
+		while (i < size_a) { 
+			ans += a.charAt(i++); 
+		} 
+	
+		while (j < size_b) { 
+			ans += b.charAt(j++); 
+		} 
+	
+		System.out.println(ans); 
+	} 
+	
+	
+	/* main function */
+	public static void main(String args[]) 
+	{ 
+	String a;
+	String b;
+	Scanner in=new Scanner(System.in);
+	a=in.next();
+	b=in.next();
+	combine(a, b, a.length(),b.length()); 
+		
+	} 
+} 
