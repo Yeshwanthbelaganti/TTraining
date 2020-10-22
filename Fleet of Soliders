@@ -1,0 +1,52 @@
+Consider a fleet of soldiers of a country are being assembled for a rehearsal session, the enemy country secretly surrounded them and has a special strategy to kill the soldiers in a particular pattern.
+Assume that the soldiers are standing in a single straight line. The enemies will repeatedly scan through this line and kill soldiers who are all matching the given pattern.
+Find the list of soldiers who are surviving at last or find if all of them are killed.
+Here soldiers are represented as alpha-numeric letters, irrespective of cases.
+Implement "FindRemainingSoldiers" class with "defeatSoldiers(String soldiers, String pattern)" method to find the left out soldiers if any, else print "Defeat" as result.
+Example:
+soldiers: xAbcyAAbcbAbccz
+pattern: Abc
+Iteration:
+0: xAbcyAAbcbAbccz
+1: xyAAbcbAbccz
+2: xyAbAbccz
+3: xyAbcz
+4: xyz
+Output: xyz
+=============================================================
+import java.util.*;
+
+class FindLeftSoldiers {
+  public static String defeatSoldiers(String soldiers, String pattern) {
+    while (soldiers.length() > 0) {
+
+        int idx = soldiers.indexOf(pattern);
+        if (idx == -1) {
+            break;
+        }
+
+        soldiers = soldiers.replaceFirst(pattern, "");
+
+    }
+
+    return soldiers;
+}    
+public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        
+        String soldiers = in.next();
+        String pattern = in.next();
+
+        in.close();
+        
+        String result = defeatSoldiers(soldiers, pattern);
+
+        if (result.length() == 0) {
+            System.out.println("Defeat");
+        } else {
+            System.out.println(result);
+        }
+
+    }
+
+}
