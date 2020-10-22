@@ -1,0 +1,45 @@
+"Juniors Network" Cartoon Channel is the favorite channel of all the kids in the city.
+As it is vacation time, the channel had introduced several new segments to engage the kids in a more creative manner. 
+"Fun with Words" is one such activity involving English alphabets, where school kids were invited to participate.
+Today on the show, the show host Santra briefed the kids about extinct languages and modern languages in the World. 
+Extinct languages are languages that are no longer in use. Such languages were widely used before and no one could have ever imagined that they will become extinct at some point.
+On the happy side of things, a language may be extinct, but some of its words may continue to be used in other languages.
+Santra now has acquired a dictionary of N words of an extinct language. She also knows K phrases used in modern languages. 
+For each of the words of the forgotten language, the kids are to determine whether the word is still in use in any of these K modern phrases or not.
+Help them with the activity by writing a block of code.
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,j,n,k,l,s=1;
+    scanf("%d%d",&n,&k);
+    int a[k];
+    char dict[n][10],phr[k][20][20];
+    for(i=0;i<n;i++)
+    {
+        scanf(" %s", dict[i]);
+    }
+    for(i=0;i<k;i++)
+    {
+        scanf("%d",&a[i]);
+        for(j=0;j<a[i];j++)
+        {
+            scanf(" %s", phr[i][j]);
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<k;j++)
+        {
+            for(l=0;l<a[j];l++)
+            {
+                if(strcmp(dict[i],phr[j][l])==0){s=0;break;}
+            }
+            if(s==0){printf("Yes ");break;}
+        }
+        if(s!=0){printf("No ");}
+        s=1;
+    }
+    return 0;
+}
