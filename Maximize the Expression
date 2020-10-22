@@ -1,0 +1,45 @@
+Shankar is an EEE student, his practical examiner given a problem statement to him. The problem is, given two positive integers A and B.
+Let’s define D such that B AND D = D. The task is to maximize the expression A XOR D.
+For Ex:
+Input: A = 11 B = 4
+Output: 15
+Take D = 4 as (B AND D) = (4 AND 4) = 4.Also, (A XOR D) = (11 XOR 4) = 15 which is the maximum according to the given condition.
+Input: A = 9 and B = 13
+Output: 13
+-------------------------------------------------------------------
+#include <iostream> 
+using namespace std; 
+
+#define MAX 32 
+
+int maximizeExpression(int a, int b) 
+{ 
+	int result = a; 
+	for (int bit = MAX - 1; bit >= 0; bit--) { 
+	    
+		int bitOfD = 1 << bit; 
+		int x = b & bitOfD; 
+		if (x == bitOfD) { 
+
+			int y = result & bitOfD; 
+			if (y == 0) { 
+				result = result ^ bitOfD; 
+			} 
+		} 
+ 
+	} 
+
+	return result; 
+} 
+
+//main function
+int main() 
+{ 
+	int a,b;
+	cin>>a;
+	cin>>b;
+
+	cout << maximizeExpression(a, b); 
+
+	return 0; 
+} 
