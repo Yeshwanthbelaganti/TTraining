@@ -1,0 +1,31 @@
+Jagthish wants to find a non-decreasing number, A number is non-decreasing if every digit (except the first one) is greater than or equal to previous digit. 
+He wants to find the count of total non-decreasing numbers with n digits.
+For example, 223, 4455567, 899, are non-decreasing numbers
+Input: n = 2
+Output: 55(10,11,12,13,14,15,16,17,18,19,20,22,23,24,25.....99)
+All digits are counted with having digits(n=2)
+--------------------------------------------------------------------------------------------------
+#include<bits/stdc++.h> 
+using namespace std; 
+
+long long int countNonDecreasing(int n) 
+{ 
+	int N = 10; 
+	long long count = 1; 
+	for (int i=1; i<=n; i++) 
+	{ 
+		count *= (N+i-1); 
+		count /= i; 
+	} 
+
+	return count; 
+} 
+
+//main function
+int main() 
+{ 
+	int n;
+	cin>>n;
+	cout << countNonDecreasing(n); 
+	return 0; 
+} 
