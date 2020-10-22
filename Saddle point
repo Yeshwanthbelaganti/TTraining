@@ -1,0 +1,42 @@
+Vinay loves to play with numbers. He will give a matrix to his friends and they have to find the saddle point in it. 
+Write a program to obtain a square matrix and find the saddle point in it.
+Note : Saddle point is an element in the matrix which is minimum in its row and maximum in its column.
+===================================================================================================
+#include<stdio.h>
+int main()
+{
+int i,j,k,n,col=0,flag=0;
+scanf("%d",&n);
+int a[n][n];
+for(i = 0 ; i < n ; i++)
+{
+    for(j = 0 ; j < n ;j++)
+    {
+        scanf("%d",&a[i][j]);
+    }
+}
+for(i = 0 ; i < n ; i++)
+{
+    int minrow = a[i][0];
+    col=0;
+    for(j = 1 ; j < n ; j++)
+    {
+        if(minrow > a[i][j])
+        {
+            minrow=a[i][j];
+            col=j;
+        }
+    }
+    for(k=0;k<n;k++)
+        if(minrow < a[k][col])
+        break;
+        if(k==n)
+        {
+            printf("Saddle point is in (%d,%d) and the value is %d\n",i,col,minrow);
+            flag=1;
+        }
+}
+if(flag == 0)
+printf("No saddle point\n");
+return 0;
+}
