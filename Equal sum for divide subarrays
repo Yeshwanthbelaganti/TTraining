@@ -1,0 +1,58 @@
+Given an array of integers, find if it’s possible to remove exactly one integer from the array that divides the array into two subarrays with the same sum.
+--------------------------------------------------------------------------------------------------------------------------------
+#include <iostream> 
+using namespace std; 
+void printSubArray(int arr[], int start, int end) 
+{ 
+	cout << "[ "; 
+	for (int i = start; i <= end; i++) 
+		cout << arr[i] << " "; 
+	cout << "] "; 
+} 
+bool divideArray(int arr[], int n) 
+{ 
+	
+	int sum = 0; 
+	for (int i = 0; i < n; i++) 
+		sum += arr[i]; 
+
+	
+	int sum_so_far = 0; 
+
+	for (int i = 0; i < n; i++) 
+	{ 
+	
+		if (2 * sum_so_far + arr[i] == sum) 
+		{ 
+			cout << "true\n"; 
+			printSubArray(arr, 0, i - 1); 
+			printSubArray(arr, i + 1, n - 1); 
+
+			return true; 
+		} 
+		
+		sum_so_far += arr[i]; 
+	} 
+
+	
+	cout << "false"; 
+
+	return false; 
+} 
+
+
+int main() 
+{ 
+	int n;
+    cin>>n;
+	int arr[n]; 
+	for(int k=0;k<n;k++)
+	{
+	    cin>>arr[k];
+	} 
+
+	divideArray(arr, n); 
+
+	return 0; 
+} 
+
