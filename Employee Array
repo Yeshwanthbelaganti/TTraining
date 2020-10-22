@@ -1,0 +1,27 @@
+Write a program that uses the following arrays:
+empId[7]: An array of seven long integers to hold employee identification numbers. The array should be initialized with the following numbers:
+5658845   4520125    7895122         8777541        8451277          1302850            7580489
+hours[7]: An array of seven integers to hold the number of hours worked by each mployee
+payRate[7] : An array of seven doubles to hold each employee’s hourly pay rate
+wages[7]: An array of seven doubles to hold each employee’s gross wages
+The program should relate the data in each array through the subscripts.
+For example, the number in element 0 of the hours array should be the number of hours worked by the employee whose identification number is stored in element 0 of the empId array.
+That same employee’s pay rate should be stored in element 0 of the payRate array.
+It should then calculate the gross wages for that employee (hours times pay rate) and store them in the wages array. 
+After the data has been entered for all the employees, the program should display each employee’s identification number and gross wages.
+--------------------------------------------------------------------------------------------------------------------------
+#include<stdio.h>
+int main ()
+{
+    long long int empid[7];
+    int hours[7],i,count = 0;
+    double payrate[7],wages[7];
+    for(i=0;i<7;i++) {
+        scanf("%llu%d%lf",&empid[i],&hours[i],&payrate[i]);
+        count++;
+    }
+    for(i=0;i<7;i++) {
+        wages[i] = hours[i]*payrate[i];
+        printf("%llu %.2lf\n",empid[i],wages[i]);
+    }
+}
