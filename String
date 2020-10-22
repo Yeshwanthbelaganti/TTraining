@@ -1,0 +1,28 @@
+You have been given a string having space separated multiple words. Reprint the string after removing the characters that occur more than once in the string.
+You are supposed to remove the later occurrences of a character.
+------------------------------------------------------------------------------------------
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+    char array[50];
+
+    scanf("%[^\n]s ",array);
+    
+    for(int i = 0; i < strlen(array); i++) {
+        for(int j = i + 1; j < strlen(array); j++) {
+            if(array[j] == array[i]) {
+                array[j] = '#';
+            }
+        }
+    }
+    
+    for(int i = 0; i < strlen(array); i++) {
+        if(array[i] != '#') {
+            printf("%c", array[i]);
+        }
+    }
+    
+    return 0;
+}
