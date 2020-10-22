@@ -1,0 +1,31 @@
+Arun is living in an apartment, his grandfather reading a newspaper and he catch some task for Arun. There are n stairs, a person standing at the bottom wants to reach the top.
+Arun can climb either 1 stair or 2 stairs at a time. the task is to count the number of ways, arun can reach the top.
+For Ex:
+Input: n = 4
+Output: 5
+(1, 1, 1, 1), (1, 1, 2), (2, 1, 1), (1, 2, 1), (2, 2)
+-----------------------------------------------------------------------------------------------
+#include<stdio.h> 
+int countWays(int n, int m) { 
+	int res[n+1]; 
+	int temp = 0; 
+	res[0] = 1; 
+	for (int i=1; i <= n; i++) { 
+		int s = i - m - 1; 
+		int e = i - 1; 
+		if (s >= 0) { 
+			temp -= res[s]; 
+		} 
+		temp += res[e]; 
+		res[i] = temp; 
+	} 
+	return res[n]; 
+} 
+
+// main function to test countWays function: 
+int main () { 
+	int n, m = 2; 
+	scanf("%d",&n);
+	printf("%d",countWays(n, m)); 
+	return 0; 
+} 
