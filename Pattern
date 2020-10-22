@@ -1,0 +1,58 @@
+a
+*b
+**c
+*d
+e
+*f
+**g
+*h
+i
+*j
+**k
+----------------------------------------------------- 
+#include <iostream> 
+  
+using namespace std; 
+  
+
+void steps(string str, int n) 
+{ 
+    // declare a flag 
+    bool flag; 
+    int x = 0; 
+  
+    for (int i = 0; i < str.length(); i++) { 
+  
+
+        if (x == 0) 
+            flag = true; 
+  
+        if (x == n - 1) 
+            flag = false; 
+  
+        // print x *s 
+        for (int j = 0; j < x; j++) 
+            cout << "*"; 
+  
+        cout << str[i] << "\n"; 
+  
+        if (flag == true) 
+            x++; 
+        else
+            x--; 
+    } 
+} 
+  
+int main() 
+{ 
+  
+    // Get the String and the number n 
+    int n; 
+    string str; 
+    cin>>str>>n;  
+      // calling the function 
+    steps(str, n); 
+  
+    return 0; 
+} 
+
