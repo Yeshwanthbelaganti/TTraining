@@ -1,0 +1,65 @@
+In a cybersecurity agency, around 100 encrypted messages come for processing. Since the length of the messages are quite long, manual labor does not help much.
+Hence you are appointed to create a program that helps in decoding the messages given the following information.
+Messages come in a binary array format i.e. an array where the elements are 0 and 1 only.
+A meaningful message is formed if all the 1s are grouped together
+The number of swaps must be minimal to get a meaningful message.
+For example. if an array is 1 0 0 1 0 1, then the minimum number of swaps is 1 so that all 1s come together thereby forming 0 0 0 1 1 1.
+----------------------------------------------------------------------------------------
+#include <stdio.h> 
+#include <limits.h> 
+  
+using namespace std; 
+
+int minSwaps(int arr[], int n) 
+{ 
+  
+int numberOfOnes = 0; 
+  
+ 
+for (int i = 0; i < n; i++) { 
+    if (arr[i] == 1) 
+    numberOfOnes++; 
+} 
+  
+
+int x = numberOfOnes; 
+  
+int count_ones = 0, maxOnes; 
+  
+for(int i = 0; i < x; i++){ 
+    if(arr[i] == 1) 
+    count_ones++; 
+} 
+      
+maxOnes = count_ones; 
+
+for (int i = 1; i <= n-x; i++) { 
+
+    if (arr[i-1] == 1)  
+    count_ones--; 
+
+    if(arr[i+x-1] == 1) 
+    count_ones++; 
+      
+    if (maxOnes < count_ones) 
+    maxOnes = count_ones; 
+} 
+
+int numberOfZeroes = x - maxOnes; 
+  
+return numberOfZeroes; 
+} 
+  
+// Driver Code 
+int main() { 
+     int n;
+     scanf("%d", &n);
+int a[n]; 
+for(int i =0 ;i<n;i++)
+    scanf("%d", &a[i]);
+  
+printf("%d",minSwaps(a, n)) ; 
+  
+return 0; 
+  
+} 
