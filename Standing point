@@ -1,0 +1,26 @@
+Fatima is standing on a point (n, m) and she wants to go to origin (0, 0) by taking steps either left or down i.e. 
+from each point she is allowed to move either in (n-1, m) or (n, m-1). Find the number of paths from point to origin.
+For Ex:
+Input : 3 6
+Output : 84
+(Fatima can move left and down, the possibilities are 84)
+Input : 3 0
+Output : 1
+(Fatima can move down from the point, so only the number of path is 1).
+--------------------------------------------------------------------------------------
+#include<bits/stdc++.h>
+using namespace std;
+int count(int x,int y)
+{
+    if(x==0 || y==0)
+        return 1;
+    else
+        return count(x-1,y)+count(x,y-1);
+}
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+    cout<<count(a,b)<<endl;
+    return 0;
+}
